@@ -12,8 +12,8 @@
 # @@Description      :  script to start wttr
 # @@Changelog        :  New script
 # @@TODO             :  Better documentation
-# @@Other            :  
-# @@Resource         :  
+# @@Other            :
+# @@Resource         :
 # @@Terminal App     :  no
 # @@sudo/root        :  no
 # @@Template         :  other/start-service
@@ -48,6 +48,11 @@ __exec_command() {
   [ "$exitCode" = 0 ] || exitCode=10
   return ${exitCode:-$?}
 }
+__start_servers() {
+  python3 /app/bin/srv.py &
+  python3 /app/bin/proxy.py &
+  python3 /app/bin/geo-proxy.py
+}
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Set variables
 DISPLAY="${DISPLAY:-}"
@@ -77,7 +82,7 @@ CONTAINER_IP_ADDRESS="$(ip a 2>/dev/null | grep 'inet' | grep -v '127.0.0.1' | a
 # Overwrite variables
 #SERVICE_PORT=""
 SERVICE_NAME="wttr"
-SERVICE_COMMAND="$SERVICE_NAME"
+SERVICE_COMMAND="__start_servers"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Show start message
