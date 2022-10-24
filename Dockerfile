@@ -35,11 +35,11 @@ ENV LANG=en_US.UTF-8 \
 WORKDIR /app
 
 COPY ./rootfs/. /
-COPY --from=builder ./bin /app/bin
-COPY --from=builder ./lib /app/lib
-COPY --from=builder ./share /app/share
 COPY --from=builder /app/wttr.in /app/bin/wttr.in
-COPY --from=builder ./requirements.txt /app
+COPY --from=builder /tmp/wttr/bin /app/bin
+COPY --from=builder /tmp/wttr/lib /app/lib
+COPY --from=builder /tmp/wttr/share /app/share
+COPY --from=builder /tmp/wttr/requirements.txt /app
 
 RUN set -ex; \
   rm -Rf "/etc/apk/repositories"; \
