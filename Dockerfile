@@ -21,7 +21,7 @@ ARG DEFAULT_DATA_DIR="/usr/local/share/template-files/data" \
   DEFAULT_TEMPLATE_DIR="/usr/local/share/template-files/defaults"
 
 ARG PACK_LIST="bash python3 py3-pip py3-scipy py3-wheel py3-gevent zlib jpeg llvm11 libtool py3-numpy-dev python3-dev"
-ARG PACK_DEV="autoconf automake g++ gcc jpeg-dev llvm11-devmake zlib-dev"
+ARG PACK_DEV="autoconf automake g++ gcc jpeg-dev llvm11-dev make zlib-dev"
 
 ENV LANG=en_US.UTF-8 \
   ENV=ENV=~/.bashrc \
